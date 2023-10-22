@@ -3,7 +3,6 @@ import pandas as pd
 import streamlit as st
 from ydata_profiling import ProfileReport
 from streamlit_pandas_profiling import st_profile_report
-import pickle
 
 # Web App Title
 st.markdown('''
@@ -11,7 +10,7 @@ st.markdown('''
 
 This is the **EDA App** created in Streamlit using the **pandas-profiling** library.
 
-**Credit:** App built in `Python` + `Streamlit Cloud` + `ChatGPT`by [Kursat Kilic](https://github.com/kilickursat) (Geek for TUST&AI)
+**Credit:** App built in `Python` + `Streamlit` by [Chanin Nantasenamat](https://medium.com/@chanin.nantasenamat) (aka [Data Professor](http://youtube.com/dataprofessor))
 
 ---
 ''')
@@ -25,7 +24,7 @@ if data_loading_option == "Online Data":
         st.header('Online Data Loading')
         uploaded_file = st.file_uploader("Upload your input file (CSV or Excel)", type=["csv", "xlsx"])
         st.markdown("""
-        [Example excel input file](https://github.com/kilickursat/WebApp/blob/main/TBM_Performance.xlsx)
+        [Example CSV input file](https://raw.githubusercontent.com/dataprofessor/data/master/delaney_solubility_with_descriptors.csv)
         """)
 
     if uploaded_file is not None:
@@ -44,10 +43,6 @@ if data_loading_option == "Online Data":
         st.write('---')
         st.header('**Pandas Profiling Report**')
         st_profile_report(pr)
-
-        # Save the EDA application to a pickle file
-        with open('eda_app.pkl', 'wb') as pickle_file:
-            pickle.dump({'data': df, 'report': pr}, pickle_file)
 
 # Batch Data Loading
 if data_loading_option == "Batch Data":
@@ -70,14 +65,11 @@ if data_loading_option == "Batch Data":
             pr = ProfileReport(df, explorative=True)
 
             st.header('**Input DataFrame**')
-            st.write(df)
-            st.write('---')
-            st.header('**Pandas Profiling Report**')
+            cols = st.beta_columns(2)
+            cols[0].write(df)
+            cols[1].header('**Pandas Profiling Report**')
+            cols[1].write('')
             st_profile_report(pr)
-
-            # Save the EDA application to a pickle file
-            with open('eda_app.pkl', 'wb') as pickle_file:
-                pickle.dump({'data': df, 'report': pr}, pickle_file)
 
         else:
             uploaded_file = st.file_uploader("Upload your input file (CSV or Excel)", type=["csv", "xlsx"])
@@ -97,11 +89,8 @@ if data_loading_option == "Batch Data":
                 pr = ProfileReport(df, explorative=True)
 
                 st.header('**Input DataFrame**')
-                st.write(df)
-                st.write('---')
-                st.header('**Pandas Profiling Report**')
+                cols = st.beta_columns(2)
+                cols[0].write(df)
+                cols[1].header('**Pandas Profiling Report**')
+                cols[1].write('')
                 st_profile_report(pr)
-
-                # Save the EDA application to a pickle file
-                with open('eda_app.pkl', 'wb') as pickle_file:
-                    pickle.dump({'data': df, 'report': pr}, pickle_file)
