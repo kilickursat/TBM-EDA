@@ -49,7 +49,7 @@ if data_loading_option == "Online Data":
             pyg_html = pyg.to_html(df,hideDataSourceConfig=True,themekey="vega",dark="media")  # Replace 'pyg' with the correct pygWalker object
 
             # Embed the HTML into the Streamlit app
-            components.html(pyg_html, height=1000, scrolling=True)
+            components.html(pyg_html, height=1000, width=1000,scrolling=True)
 
             st.header('**Input DataFrame**')
             st.write(df)
@@ -85,11 +85,11 @@ if data_loading_option == "Batch Data":
         pyg_html = pyg.to_html(df)  # Replace 'pyg' with the correct pygWalker object
 
         # Embed the HTML into the Streamlit app
-        components.html(pyg_html, height=1000, scrolling=True)
+        components.html(pyg_html, height=1000, width=1000,scrolling=True)
         st.header('**Input DataFrame**')
         st.write(df)
         st.header('**Pandas Profiling Report**')
         st_profile_report(pr)
         
-st.markdown("[pyWalker URL](https://docs.kanaries.net/pygwalker),[pandas-profiling URL](https://github.com/ydataai/ydata-profiling)")
+st.markdown("***[pyWalker URL](https://docs.kanaries.net/pygwalker),[pandas-profiling URL](https://github.com/ydataai/ydata-profiling)***")
 
