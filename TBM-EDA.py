@@ -3,6 +3,8 @@ import streamlit as st
 from ydata_profiling import ProfileReport
 from streamlit_pandas_profiling import st_profile_report
 from PIL import Image
+import pygwalker as pyg
+import streamlit.components.v1 as components
 
 # Web App Title
 st.markdown('''
@@ -70,6 +72,20 @@ if data_loading_option == "Batch Data":
         st.header('**Pandas Profiling Report**')
         st_profile_report(pr)
         
+# pyWalker Page
+if session_state.page == "pyWalker":
+    st.header('pyWalker Page')
+    st.markdown("This is the pyWalker page. You can add your content here.")
+
+    # Integrate online and batch data
+    st.markdown("Integrate online and batch data here")
+    
+    # Generate the HTML using PygWalker
+    pyg_html = pygwalker.to_html(df)  # Replace 'pyg' with the correct pygWalker object
+    
+    # Embed the HTML into the Streamlit app
+    components.html(pyg_html, height=1000, scrolling=True)
+
 image = Image.open('Kursat_Artificial_intelligence_and_a_tbm.png')
 
 st.image(image, caption='Intelligent-TBM')
