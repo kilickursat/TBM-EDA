@@ -91,5 +91,6 @@ if data_loading_option == "Batch Data":
         st.header('**Pandas Profiling Report**')
         st_profile_report(pr)
         
-st.markdown("[pyWalker URL] (https://docs.kanaries.net/pygwalker),
-[pandas-profiling URL] (https://github.com/ydataai/ydata-profiling"))
+st.markdown("[pyWalker URL](https://docs.kanaries.net/pygwalker),
+[pandas-profiling URL](https://github.com/ydataai/ydata-profiling)")
+
