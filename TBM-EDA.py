@@ -6,7 +6,6 @@ from PIL import Image
 import pygwalker as pyg
 import streamlit.components.v1 as components
 
-session_state = get(username="", page="Main Page")
 
 # Web App Title
 st.markdown('''
@@ -21,11 +20,6 @@ This is the **TBM EDA App** created in Streamlit using the **pandas-profiling** 
 # Option to choose online or batch data loading
 data_loading_option = st.radio("Select data loading option:", ("Online Data", "Batch Data"))
 
-# Sidebar menu for page navigation
-page_names_to_funcs = {
-    "Main Page": main_page,
-    "Page 2 (pyWalker)": page2,  # Changed "Page 2" to "pyWalker"
-}
 # Online Data Loading
 
 if data_loading_option == "Online Data":
@@ -40,11 +34,19 @@ def main_page():
             online_data_link = "https://github.com/kilickursat/WebApp/raw/main/TBM_Performance.xlsx"
             df = pd.read_excel(online_data_link, engine='openpyxl')
             # Show the data as a table
+            
             st.dataframe(df)
             # Show statistics on the data
             st.write(df.describe())
 
             pr = ProfileReport(df, explorative=True)
+            # Generate the HTML using PygWalker
+            st.header('pyWalker Page')
+            st.markdown("This is the pyWalker page. You can add your content here.")
+            pyg_html = pygwalker.to_html(df)  # Replace 'pyg' with the correct pygWalker object
+
+            # Embed the HTML into the Streamlit app
+            components.html(pyg_html, height=1000, scrolling=True)
 
             st.header('**Input DataFrame**')
             st.write(df)
@@ -78,21 +80,6 @@ if data_loading_option == "Batch Data":
         st.write(df)
         st.header('**Pandas Profiling Report**')
         st_profile_report(pr)
-
-# pyWalker Page
-def page2():
-    st.header('pyWalker Page')
-    st.markdown("This is the pyWalker page. You can add your content here.")
-
-    # Integrate online and batch data
-    st.markdown("Integrate online and batch data here")
-
-    # Generate the HTML using PygWalker
-    pyg_html = pygwalker.to_html(df)  # Replace 'pyg' with the correct pygWalker object
-
-    # Embed the HTML into the Streamlit app
-    components.html(pyg_html, height=1000, scrolling=True)
-
 
 
 image = Image.open('Kursat_Artificial_intelligence_and_a_tbm.png')
