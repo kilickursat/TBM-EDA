@@ -14,6 +14,14 @@ This is the **TBM EDA App** created in Streamlit using the **pandas-profiling** 
 ---
 ''')
 
+# Add two JPG images, one aligned left and the other aligned right
+col1, col2 = st.beta_columns(2)
+with col1:
+    st.image("Kursat_Artificial_intelligence_and_a_tbm.png", use_column_width=True)  # Replace "left_image.jpg" with the actual image file path for the left image
+
+with col2:
+    st.image("Kursat_Artificial_intelligence_and_TBM.png", use_column_width=True)  # Replace "right_image.jpg" with the actual image file path for the right image
+
 # Option to choose online or batch data loading
 data_loading_option = st.radio("Select data loading option:", ("Online Data", "Batch Data"))
 
