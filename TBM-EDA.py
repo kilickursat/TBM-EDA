@@ -6,12 +6,15 @@ from PIL import Image
 import pygwalker as pyg
 import streamlit.components.v1 as components
 
+image = Image.open('Kursat_Artificial_intelligence_and_a_tbm.png')
 
+st.image(image, caption='Intelligent-TBM')
+# Add two JPG images, one aligned left and the other aligned right
 # Web App Title
 st.markdown('''
 # **The TBM EDA App**
 
-This is the **TBM EDA App** created in Streamlit using the **pandas-profiling** library.
+This is the **TBM EDA App** created in Streamlit using the **pandas-profiling** and **pyWalker** libraries.
 
 **Credit:** App built in `Python` + `Streamlit Cloud` + `ChatGPT` by [Kursat Kilic](https://github.com/kilickursat) (Researcher for TUST&AI field))
 
@@ -74,15 +77,16 @@ if data_loading_option == "Batch Data":
         df = load_data(uploaded_file)
         st.dataframe(df)
         st.write(df.describe())
+        
         pr = ProfileReport(df, explorative=True)
+        # Generate the HTML using PygWalker
+        st.header('pyWalker Page')
+        st.markdown("This is the pyWalker page. You can add your content here.")
+        pyg_html = pyg.to_html(df)  # Replace 'pyg' with the correct pygWalker object
 
+        # Embed the HTML into the Streamlit app
+        components.html(pyg_html, height=1000, scrolling=True)
         st.header('**Input DataFrame**')
         st.write(df)
         st.header('**Pandas Profiling Report**')
         st_profile_report(pr)
-
-
-image = Image.open('Kursat_Artificial_intelligence_and_a_tbm.png')
-
-st.image(image, caption='Intelligent-TBM')
-# Add two JPG images, one aligned left and the other aligned right
