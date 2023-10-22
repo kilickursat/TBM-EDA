@@ -89,19 +89,20 @@ if data_loading_option == "Batch Data":
         # Generate the HTML using PygWalker
         st.header('pyWalker Page')
         st.markdown("This is the pyWalker page. You can add your content here.")
-            custom_css = """
-            <style>
-                #pyWalker-container {
+        pyg_html = pyg.to_html(df,hideDataSourceConfig=True,themekey="vega",dark="media")  # Replace 'pyg' with the correct pygWalker object
+        custom_css = """
+        <style>
+            #pyWalker-container {
                     width: 100%; /* Adjust the width as needed, e.g., 80% or 1000px */
                 }
 </style>
 """
 
-            # Embed the HTML into the Streamlit app
-            components.html(custom_css + pyg_html, height=1000, scrolling=True)
+        # Embed the HTML into the Streamlit app
+        components.html(custom_css + pyg_html, height=1000, scrolling=True)
 
         # Embed the HTML into the Streamlit app
-        components.html(pyg_html, height=1000, width=1000,scrolling=True)
+        #components.html(pyg_html, height=1000, width=1000,scrolling=True)
         st.header('**Input DataFrame**')
         st.write(df)
         st.header('**Pandas Profiling Report**')
