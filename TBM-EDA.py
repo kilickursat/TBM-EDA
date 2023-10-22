@@ -45,7 +45,7 @@ if data_loading_option == "Online Data":
             
             # Generate the HTML using PygWalker
             st.header('orange[pyWalker EDA]')
-            st.markdown("This is the pyWalker page. You can add your content here.")
+            st.markdown("This is the pyWalker. Please play with X-axis and Y-axis just doing drag and drop")
             pyg_html = pyg.to_html(df,hideDataSourceConfig=True,themekey="vega",dark="media")  # Replace 'pyg' with the correct pygWalker object
 
             # Embed the HTML into the Streamlit app
@@ -81,7 +81,7 @@ if data_loading_option == "Batch Data":
         pr = ProfileReport(df, explorative=True)
         # Generate the HTML using PygWalker
         st.header('pyWalker Page')
-        st.markdown("This is the pyWalker page. You can add your content here.")
+        st.markdown("This is the pyWalker. Please play with X-axis and Y-axis just doing drag and drop")
         pyg_html = pyg.to_html(df,hideDataSourceConfig=True,themekey="vega",dark="media")  # Replace 'pyg' with the correct pygWalker object
         
         # Embed the HTML into the Streamlit app
