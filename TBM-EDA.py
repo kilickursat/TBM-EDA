@@ -14,6 +14,20 @@ This is the **TBM EDA App** created in Streamlit using the **pandas-profiling** 
 
 ---
 ''')
+st.markdown(
+    """
+    <style>
+        [data-testid=stSidebar] [data-testid=stImage]{
+            text-align: above;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 100%;
+        }
+    </style>
+    """, unsafe_allow_html=True
+)
+
 
 image = Image.open('Kursat_Artificial_intelligence_and_a_tbm.png')
 
