@@ -10,7 +10,7 @@ st.markdown('''
 
 This is the **TBM EDA App** created in Streamlit using the **pandas-profiling** library.
 
-**Credit:** App built in `Python` + `Streamlit Cloud` + `ChatGPT`by [Kursat Kilic](https://github.com/kilickursat) (Researcher for TUST&AI field))
+**Credit:** App built in `Python` + `Streamlit Cloud` + `ChatGPT` by [Kursat Kilic](https://github.com/kilickursat) (Researcher for TUST&AI field))
 
 ---
 ''')
@@ -48,45 +48,25 @@ if data_loading_option == "Online Data":
 if data_loading_option == "Batch Data":
     with st.sidebar:
         st.header('Batch Data Loading')
-        st.markdown("You can choose to load an example dataset or upload your own CSV or Excel file.")
-        example_button = st.button('Use Example Dataset')
+        st.markdown("You can choose to upload your own CSV or Excel file.")
 
-        if example_button:
-            # Example data
-            @st.cache
-            def load_example_data():
-                a = pd.DataFrame(
-                    np.random.rand(100, 5),
-                    columns=['a', 'b', 'c', 'd', 'e']
-                )
-                return a
+    uploaded_file = st.file_uploader("Upload your input file (CSV or Excel)", type=["csv", "xlsx"])
+    st.markdown("""
+    [Example CSV input file](https://raw.githubusercontent.com/dataprofessor/data/master/delaney_solubility_with_descriptors.csv)
+    """)
 
-            df = load_example_data()
-            pr = ProfileReport(df, explorative=True)
+    if uploaded_file is not None:
+        @st.cache
+        def load_data(file):
+            if file.name.endswith('.csv'):
+                return pd.read_csv(file)
+            elif file.name.endswith('.xlsx'):
+                return pd.read_excel(file, engine='openpyxl')
 
-            st.header('**Input DataFrame**')
-            st.write(df)
-            st.header('**Pandas Profiling Report**')
-            st_profile_report(pr)
+        df = load_data(uploaded_file)
+        pr = ProfileReport(df, explorative=True)
 
-        else:
-            uploaded_file = st.file_uploader("Upload your input file (CSV or Excel)", type=["csv", "xlsx"])
-            st.markdown("""
-            [Example CSV input file](https://raw.githubusercontent.com/dataprofessor/data/master/delaney_solubility_with_descriptors.csv)
-            """)
-
-            if uploaded_file is not None:
-                @st.cache
-                def load_data(file):
-                    if file.name.endswith('.csv'):
-                        return pd.read_csv(file)
-                    elif file.name.endswith('.xlsx'):
-                        return pd.read_excel(file, engine='openpyxl')
-
-                df = load_data(uploaded_file)
-                pr = ProfileReport(df, explorative=True)
-
-                st.header('**Input DataFrame**')
-                st.write(df)
-                st.header('**Pandas Profiling Report**')
-                st_profile_report(pr)
+        st.header('**Input DataFrame**')
+        st.write(df)
+        st.header('**Pandas Profiling Report**')
+        st_profile_report(pr)
