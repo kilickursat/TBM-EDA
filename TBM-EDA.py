@@ -86,9 +86,9 @@ def download_report(report):
 
     file_type = st.selectbox('Select file type:', ['PDF', 'HTML'])
     if file_type == 'PDF':
-    report.to_pdf('report.pdf')
+        report.to_pdf('report.pdf')
     elif file_type == 'HTML':
-    report.to_html('report.html')
+        report.to_html('report.html')
     pr = ProfileReport(df, explorative=True)
     st.button('Download report', on_click=download_report, args=(report,))
 
