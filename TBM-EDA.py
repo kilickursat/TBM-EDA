@@ -8,7 +8,7 @@ import streamlit.components.v1 as components
 
 image = Image.open('Kursat_Artificial_intelligence_and_TBM.png')
 
-st.success('This is a success message!', icon="✅")
+st.success('Welcome!')
 
 st.image(image, caption='Intelligent-TBM-by-Midjourney',width=500)
 # Add two JPG images, one aligned left and the other aligned right
