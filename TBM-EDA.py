@@ -6,9 +6,9 @@ from PIL import Image
 import pygwalker as pyg
 import streamlit.components.v1 as components
 
-image = Image.open('Kursat_Artificial_intelligence_and_a_tbm.png')
+image = Image.open('Kursat_Artificial_intelligence_and_TBM.png')
 
-st.image(image, caption='Intelligent-TBM')
+st.image(image, caption='Intelligent-TBM',width=300)
 # Add two JPG images, one aligned left and the other aligned right
 # Web App Title
 st.markdown('''
@@ -16,7 +16,7 @@ st.markdown('''
 
 This is the **TBM EDA App** created in Streamlit using the **pandas-profiling** and **pyWalker** libraries.
 
-**Credit:** App built in `Python` + `Streamlit Cloud` + `ChatGPT` by [Kursat Kilic](https://github.com/kilickursat) (Researcher for TUST&AI field))
+**Credit:** App built in `Python` + `Streamlit Cloud` + `ChatGPT` + `pyWalker` by [Kursat Kilic](https://github.com/kilickursat) (Researcher for TUST&AI field))
 
 ---
 ''')
@@ -90,3 +90,6 @@ if data_loading_option == "Batch Data":
         st.write(df)
         st.header('**Pandas Profiling Report**')
         st_profile_report(pr)
+        
+st.markdown(''' "[pyWalker URL] (https://docs.kanaries.net/pygwalker)",
+"[pandas-profiling URL] (https://github.com/ydataai/ydata-profiling)"))
