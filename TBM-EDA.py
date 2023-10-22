@@ -1,3 +1,4 @@
+import pickle
 import pandas as pd
 import streamlit as st
 
@@ -32,6 +33,14 @@ def load_data(mode='online'):
 
 # Load the data
 df = load_data(mode='online')
+
+# Pickle the data
+with open('data.pickle', 'wb') as f:
+  pickle.dump(df, f)
+
+# Load the pickled data
+with open('data.pickle', 'rb') as f:
+  df = pickle.load(f)
 
 # Create a ydata-profiling report
 report = ydata_profiling.ProfileReport(df)
