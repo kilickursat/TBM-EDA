@@ -32,25 +32,10 @@ if data_loading_option == "Online Data":
         st.markdown("[Example Online Dataset](https://github.com/kilickursat/WebApp/blob/main/TBM_Performance.xlsx)")
         online_button = st.button('Press to Use Online Dataset')
 
-        # Establish an SQL database connection
-        sql_connection = st.experimental_connection("my_sql_connection", type="sql")
-    
         if online_button:
-            # Load data from SQL database
-            query = "SELECT * FROM your_table"  # Replace with your SQL query
-            df = sql_connection.query(query)
-            pr = ProfileReport(df, explorative=True)
-    
-            st.header('**Input DataFrame**')
-            st.write(df)
-            st.write('---')
-            st.header('**Pandas Profiling Report**')
-            st_profile_report(pr)
-
-        #if online_button:
             # Load the online dataset
-            #online_data_link = "https://github.com/kilickursat/WebApp/raw/main/TBM_Performance.xlsx"
-            #df = pd.read_excel(online_data_link, engine='openpyxl')
+            online_data_link = "https://github.com/kilickursat/WebApp/raw/main/TBM_Performance.xlsx"
+            df = pd.read_excel(online_data_link, engine='openpyxl')
             
             # Show the data as a table 
             st.dataframe(df)
