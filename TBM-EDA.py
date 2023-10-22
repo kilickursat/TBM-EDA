@@ -17,11 +17,12 @@ This is the **TBM EDA App** created in Streamlit using the **pandas-profiling** 
 # Option to choose online or batch data loading
 data_loading_option = st.radio("Select data loading option:", ("Online Data", "Batch Data"))
 
+
 # Online Data Loading
 if data_loading_option == "Online Data":
     with st.sidebar:
-        st.header('Online Data Loading')
-        st.markdown("You can choose to load the online dataset or upload your own CSV or Excel file.")
+        st.header('Press to use Online Data Loading')
+        st.markdown("You can choose to load the online dataset or upload your own CSV or Excel file. The example dataset is from TBM literature")
         st.markdown("[Example Online Dataset](https://github.com/kilickursat/WebApp/blob/main/TBM_Performance.xlsx)")
         online_button = st.button('Use Online Dataset')
 
@@ -29,6 +30,11 @@ if data_loading_option == "Online Data":
             # Load the online dataset
             online_data_link = "https://github.com/kilickursat/WebApp/raw/main/TBM_Performance.xlsx"
             df = pd.read_excel(online_data_link, engine='openpyxl')
+            # Show the data as a table
+            st.dataframe(df)
+            # Show statistics on the data
+            st.write(df.describe())
+
             pr = ProfileReport(df, explorative=True)
 
             st.header('**Input DataFrame**')
@@ -55,6 +61,8 @@ if data_loading_option == "Batch Data":
                 return pd.read_excel(file, engine='openpyxl')
 
         df = load_data(uploaded_file)
+        st.dataframe(df)
+        st.write(df.describe())
         pr = ProfileReport(df, explorative=True)
 
         st.header('**Input DataFrame**')
