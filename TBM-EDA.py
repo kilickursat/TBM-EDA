@@ -46,7 +46,7 @@ if data_loading_option == "Online Data":
             # Generate the HTML using PygWalker
             st.header('pyWalker Page')
             st.markdown("This is the pyWalker page. You can add your content here.")
-            pyg_html = pyg.to_html(df)  # Replace 'pyg' with the correct pygWalker object
+            pyg_html = pyg.to_html(df,hideDataSourceConfig=True,themekey="vega",dark="media")  # Replace 'pyg' with the correct pygWalker object
 
             # Embed the HTML into the Streamlit app
             components.html(pyg_html, height=1000, scrolling=True)
@@ -64,7 +64,7 @@ if data_loading_option == "Batch Data":
         st.markdown("You can choose to upload your own CSV or Excel file.")
     
     uploaded_file = st.file_uploader("Upload your input file (CSV or Excel)", type=["csv", "xlsx"])
-    st.markdown("[Example CSV input file](https://github.com/kilickursat/WebApp/raw/main/TBM_Performance.xlsx)")
+    st.markdown("[Example excel input file](https://github.com/kilickursat/WebApp/raw/main/TBM_Performance.xlsx)")
 
     if uploaded_file is not None:
         @st.cache
