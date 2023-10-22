@@ -28,7 +28,7 @@ if data_loading_option == "Online Data":
         st.markdown("You can choose to load the online dataset or upload your own CSV or Excel file. The example dataset is from TBM literature")
         st.markdown("[Example Online Dataset](https://github.com/kilickursat/WebApp/blob/main/TBM_Performance.xlsx)")
         online_button = st.button('Use Online Dataset')
-def main_page():
+
         if online_button:
             # Load the online dataset
             online_data_link = "https://github.com/kilickursat/WebApp/raw/main/TBM_Performance.xlsx"
