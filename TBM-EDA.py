@@ -65,10 +65,8 @@ if data_loading_option == "Batch Data":
             pr = ProfileReport(df, explorative=True)
 
             st.header('**Input DataFrame**')
-            cols = st.beta_columns(2)
-            cols[0].write(df)
-            cols[1].header('**Pandas Profiling Report**')
-            cols[1].write('')
+            st.write(df)
+            st.header('**Pandas Profiling Report**')
             st_profile_report(pr)
 
         else:
@@ -89,8 +87,6 @@ if data_loading_option == "Batch Data":
                 pr = ProfileReport(df, explorative=True)
 
                 st.header('**Input DataFrame**')
-                cols = st.beta_columns(2)
-                cols[0].write(df)
-                cols[1].header('**Pandas Profiling Report**')
-                cols[1].write('')
+                st.write(df)
+                st.header('**Pandas Profiling Report**')
                 st_profile_report(pr)
