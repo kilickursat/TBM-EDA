@@ -8,7 +8,7 @@ import streamlit.components.v1 as components
 
 image = Image.open('Kursat_Artificial_intelligence_and_TBM.png')
 
-st.image(image, caption='Intelligent-TBM',width=300)
+st.image(image, caption='Intelligent-TBM-by-Midjourney',width=500)
 # Add two JPG images, one aligned left and the other aligned right
 # Web App Title
 st.markdown('''
