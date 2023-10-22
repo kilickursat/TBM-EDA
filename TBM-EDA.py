@@ -6,11 +6,11 @@ from streamlit_pandas_profiling import st_profile_report
 
 # Web App Title
 st.markdown('''
-# **The EDA App**
+# **The TBM EDA App**
 
-This is the **EDA App** created in Streamlit using the **pandas-profiling** library.
+This is the **TBM EDA App** created in Streamlit using the **pandas-profiling** library.
 
-**Credit:** App built in `Python` + `Streamlit` by [Chanin Nantasenamat](https://medium.com/@chanin.nantasenamat) (aka [Data Professor](http://youtube.com/dataprofessor))
+**Credit:** App built in `Python` + `Streamlit Cloud` + `ChatGPT`by [Kursat Kilic](https://github.com/kilickursat) (Researcher for TUST&AI field))
 
 ---
 ''')
@@ -24,7 +24,7 @@ if data_loading_option == "Online Data":
         st.header('Online Data Loading')
         uploaded_file = st.file_uploader("Upload your input file (CSV or Excel)", type=["csv", "xlsx"])
         st.markdown("""
-        [Example CSV input file](https://raw.githubusercontent.com/dataprofessor/data/master/delaney_solubility_with_descriptors.csv)
+        [Example CSV input file](https://github.com/kilickursat/WebApp/blob/main/TBM_Performance.xlsx)
         """)
 
     if uploaded_file is not None:
