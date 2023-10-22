@@ -15,8 +15,16 @@ This is the **EDA App** created in Streamlit using the **pandas-profiling** libr
 ---
 ''')
 
+# Center-aligning the content
+st.write("")
+st.write("")
+
 # Option to choose online or batch data loading
-data_loading_option = st.radio("Select data loading option:", ("Online Data", "Batch Data"))
+data_loading_option = st.radio("Select data loading option:", ("Online Data", "Batch Data", "Example Data"))
+
+# Center-aligning the content
+st.write("")
+st.write("")
 
 # Online Data Loading
 if data_loading_option == "Online Data":
@@ -90,3 +98,7 @@ if data_loading_option == "Batch Data":
                 st.write(df)
                 st.header('**Pandas Profiling Report**')
                 st_profile_report(pr)
+
+# Center-aligning the content
+st.write("")
+st.write("")
