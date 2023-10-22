@@ -8,6 +8,8 @@ import streamlit.components.v1 as components
 
 image = Image.open('Kursat_Artificial_intelligence_and_TBM.png')
 
+st.success('This is a success message!', icon="✅")
+
 st.image(image, caption='Intelligent-TBM-by-Midjourney',width=500)
 # Add two JPG images, one aligned left and the other aligned right
 # Web App Title
@@ -94,5 +96,6 @@ if data_loading_option == "Batch Data":
         st.header('**Pandas Profiling Report**')
         st_profile_report(pr)
         
-st.markdown("***[pyWalker URL](https://docs.kanaries.net/pygwalker),[pandas-profiling URL](https://github.com/ydataai/ydata-profiling)***")
+st.link_button("Go to pyWalker", "https://docs.kanaries.net/pygwalker")
+st.link_button("Go to pandas-profiling",https://github.com/ydataai/ydata-profiling)
 
