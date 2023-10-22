@@ -92,7 +92,7 @@ def download_report(report):
     pr = ProfileReport(df, explorative=True)
     st.button('Download report', on_click=download_report, args=(report,))
 
-
+df = load_data(uploaded_file)
 def plot_pygwalker(df):
   """Plots the data using pyWalker.
 
