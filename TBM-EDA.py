@@ -72,17 +72,18 @@ if data_loading_option == "Batch Data":
         st.header('**Pandas Profiling Report**')
         st_profile_report(pr)
         
+
 # pyWalker Page
-if session_state.page == "pyWalker":
+def page2():
     st.header('pyWalker Page')
     st.markdown("This is the pyWalker page. You can add your content here.")
 
     # Integrate online and batch data
     st.markdown("Integrate online and batch data here")
-    
+
     # Generate the HTML using PygWalker
     pyg_html = pygwalker.to_html(df)  # Replace 'pyg' with the correct pygWalker object
-    
+
     # Embed the HTML into the Streamlit app
     components.html(pyg_html, height=1000, scrolling=True)
 
