@@ -11,52 +11,32 @@ st.markdown('''
 
 This is the **EDA App** created in Streamlit using the **pandas-profiling** library.
 
-**Credit:** App built in `Python` + `Streamlit` by [Chanin Nantasenamat](https://medium.com/@chanin.nantasenamat) (aka [Data Professor](http://youtube.com/dataprofessor))
+**Credit:** App built in `Python` + `Streamlit Cloud` + `ChatGPT`by [Kursat Kilic](https://github.com/kilickursat) (Geek for TUST&AI)
 
 ---
 ''')
 
-# Upload CSV or Excel data
-with st.sidebar.header('1. Upload your CSV or Excel data'):
-    uploaded_file = st.sidebar.file_uploader("Upload your input file", type=["csv", "xlsx"])
-    st.sidebar.markdown("""
-    [Example CSV input file](https://raw.githubusercontent.com/dataprofessor/data/master/delaney_solubility_with_descriptors.csv)
-    """)
+# Option to choose online or batch data loading
+data_loading_option = st.radio("Select data loading option:", ("Online Data", "Batch Data"))
 
 # Online Data Loading
-if uploaded_file is not None:
-    @st.cache
-    def load_data(file):
-        if file.name.endswith('.csv'):
-            return pd.read_csv(file)
-        elif file.name.endswith('.xlsx'):
-            return pd.read_excel(file, engine='openpyxl')
+if data_loading_option == "Online Data":
+    with st.sidebar:
+        st.header('Online Data Loading')
+        uploaded_file = st.file_uploader("Upload your input file (CSV or Excel)", type=["csv", "xlsx"])
+        st.markdown("""
+        [Example excel input file](https://github.com/kilickursat/WebApp/blob/main/TBM_Performance.xlsx)
+        """)
 
-    df = load_data(uploaded_file)
-    pr = ProfileReport(df, explorative=True)
-
-    st.header('**Input DataFrame**')
-    st.write(df)
-    st.write('---')
-    st.header('**Pandas Profiling Report**')
-    st_profile_report(pr)
-
-    # Save the EDA application to a pickle file
-    with open('eda_app.pkl', 'wb') as pickle_file:
-        pickle.dump({'data': df, 'report': pr}, pickle_file)
-else:
-    st.info('Awaiting for CSV or Excel file to be uploaded.')
-    if st.button('Press to use Example Dataset'):
-        # Example data
+    if uploaded_file is not None:
         @st.cache
-        def load_example_data():
-            a = pd.DataFrame(
-                np.random.rand(100, 5),
-                columns=['a', 'b', 'c', 'd', 'e']
-            )
-            return a
+        def load_data(file):
+            if file.name.endswith('.csv'):
+                return pd.read_csv(file)
+            elif file.name.endswith('.xlsx'):
+                return pd.read_excel(file, engine='openpyxl')
 
-        df = load_example_data()
+        df = load_data(uploaded_file)
         pr = ProfileReport(df, explorative=True)
 
         st.header('**Input DataFrame**')
@@ -68,3 +48,60 @@ else:
         # Save the EDA application to a pickle file
         with open('eda_app.pkl', 'wb') as pickle_file:
             pickle.dump({'data': df, 'report': pr}, pickle_file)
+
+# Batch Data Loading
+if data_loading_option == "Batch Data":
+    with st.sidebar:
+        st.header('Batch Data Loading')
+        st.markdown("You can choose to load an example dataset or upload your own CSV or Excel file.")
+        example_button = st.button('Use Example Dataset')
+
+        if example_button:
+            # Example data
+            @st.cache
+            def load_example_data():
+                a = pd.DataFrame(
+                    np.random.rand(100, 5),
+                    columns=['a', 'b', 'c', 'd', 'e']
+                )
+                return a
+
+            df = load_example_data()
+            pr = ProfileReport(df, explorative=True)
+
+            st.header('**Input DataFrame**')
+            st.write(df)
+            st.write('---')
+            st.header('**Pandas Profiling Report**')
+            st_profile_report(pr)
+
+            # Save the EDA application to a pickle file
+            with open('eda_app.pkl', 'wb') as pickle_file:
+                pickle.dump({'data': df, 'report': pr}, pickle_file)
+
+        else:
+            uploaded_file = st.file_uploader("Upload your input file (CSV or Excel)", type=["csv", "xlsx"])
+            st.markdown("""
+            [Example CSV input file](https://raw.githubusercontent.com/dataprofessor/data/master/delaney_solubility_with_descriptors.csv)
+            """)
+
+            if uploaded_file is not None:
+                @st.cache
+                def load_data(file):
+                    if file.name.endswith('.csv'):
+                        return pd.read_csv(file)
+                    elif file.name.endswith('.xlsx'):
+                        return pd.read_excel(file, engine='openpyxl')
+
+                df = load_data(uploaded_file)
+                pr = ProfileReport(df, explorative=True)
+
+                st.header('**Input DataFrame**')
+                st.write(df)
+                st.write('---')
+                st.header('**Pandas Profiling Report**')
+                st_profile_report(pr)
+
+                # Save the EDA application to a pickle file
+                with open('eda_app.pkl', 'wb') as pickle_file:
+                    pickle.dump({'data': df, 'report': pr}, pickle_file)
