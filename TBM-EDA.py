@@ -22,13 +22,14 @@ data_loading_option = st.radio("Select data loading option:", ("Online Data", "B
 
 
 # Online Data Loading
+
 if data_loading_option == "Online Data":
     with st.sidebar:
         st.header('Press to use Online Data Loading')
         st.markdown("You can choose to load the online dataset or upload your own CSV or Excel file. The example dataset is from TBM literature")
         st.markdown("[Example Online Dataset](https://github.com/kilickursat/WebApp/blob/main/TBM_Performance.xlsx)")
         online_button = st.button('Use Online Dataset')
-
+def main_page():
         if online_button:
             # Load the online dataset
             online_data_link = "https://github.com/kilickursat/WebApp/raw/main/TBM_Performance.xlsx"
@@ -72,7 +73,26 @@ if data_loading_option == "Batch Data":
         st.write(df)
         st.header('**Pandas Profiling Report**')
         st_profile_report(pr)
-        
+
+# pyWalker Page
+def page2():
+    st.header('pyWalker Page')
+    st.markdown("This is the pyWalker page. You can add your content here.")
+
+    # Integrate online and batch data
+    st.markdown("Integrate online and batch data here")
+
+    # Generate the HTML using PygWalker
+    pyg_html = pygwalker.to_html(df)  # Replace 'pyg' with the correct pygWalker object
+
+    # Embed the HTML into the Streamlit app
+    components.html(pyg_html, height=1000, scrolling=True)
+
+# Sidebar menu for page navigation
+page_names_to_funcs = {
+    "Main Page": main_page,
+    "Page 2 (pyWalker)": page2,  # Changed "Page 2" to "pyWalker"
+}
 
 image = Image.open('Kursat_Artificial_intelligence_and_a_tbm.png')
 
