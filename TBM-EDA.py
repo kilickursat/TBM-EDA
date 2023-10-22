@@ -64,7 +64,7 @@ if data_loading_option == "Batch Data":
         st.markdown("You can choose to upload your own CSV or Excel file.")
     
     uploaded_file = st.file_uploader("Upload your input file (CSV or Excel)", type=["csv", "xlsx"])
-    st.markdown("[Example CSV input file](https://raw.githubusercontent.com/dataprofessor/data/master/delaney_solubility_with_descriptors.csv)")
+    st.markdown("[Example CSV input file](https://github.com/kilickursat/WebApp/raw/main/TBM_Performance.xlsx)")
 
     if uploaded_file is not None:
         @st.cache
