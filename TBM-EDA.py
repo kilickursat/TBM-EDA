@@ -30,7 +30,7 @@ if data_loading_option == "Online Data":
         st.header('Press to use Online Data Loading')
         st.markdown("You can choose to load the online dataset or upload your own CSV or Excel file. The example dataset is from TBM literature")
         st.markdown("[Example Online Dataset](https://github.com/kilickursat/WebApp/blob/main/TBM_Performance.xlsx)")
-        online_button = st.button('Use Online Dataset')
+        online_button = st.button('Press to Use Online Dataset')
 
         if online_button:
             # Load the online dataset
@@ -44,19 +44,12 @@ if data_loading_option == "Online Data":
             pr = ProfileReport(df, explorative=True)
             
             # Generate the HTML using PygWalker
-            st.header('pyWalker Page')
+            st.header('orange[pyWalker EDA]')
             st.markdown("This is the pyWalker page. You can add your content here.")
             pyg_html = pyg.to_html(df,hideDataSourceConfig=True,themekey="vega",dark="media")  # Replace 'pyg' with the correct pygWalker object
-            custom_css = """
-            <style>
-                #pyWalker-container {
-                    width: 100%; /* Adjust the width as needed, e.g., 80% or 1000px */
-                }
-</style>
-"""
 
             # Embed the HTML into the Streamlit app
-            components.html(custom_css + pyg_html, height=1000, scrolling=True)
+            components.html(pyg_html, height=1000, scrolling=True)
 
             st.header('**Input DataFrame**')
             st.write(df)
@@ -90,19 +83,12 @@ if data_loading_option == "Batch Data":
         st.header('pyWalker Page')
         st.markdown("This is the pyWalker page. You can add your content here.")
         pyg_html = pyg.to_html(df,hideDataSourceConfig=True,themekey="vega",dark="media")  # Replace 'pyg' with the correct pygWalker object
-        custom_css = """
-        <style>
-            #pyWalker-container {
-                    width: 100%; /* Adjust the width as needed, e.g., 80% or 1000px */
-                }
-</style>
-"""
+        
+        # Embed the HTML into the Streamlit app
+        components.html(pyg_html, height=1000, scrolling=True)
 
         # Embed the HTML into the Streamlit app
-        components.html(custom_css + pyg_html, height=1000, scrolling=True)
-
-        # Embed the HTML into the Streamlit app
-        #components.html(pyg_html, height=1000, width=1000,scrolling=True)
+        #components.html(pyg_html, height=1000, scrolling=True)
         st.header('**Input DataFrame**')
         st.write(df)
         st.header('**Pandas Profiling Report**')
