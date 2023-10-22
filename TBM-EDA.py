@@ -43,6 +43,7 @@ if data_loading_option == "Online Data":
             st.dataframe(df)
             # Show statistics on the data
             st.write(df.describe())
+            pr = ProfileReport(df, explorative=True)
 
             # Generate the HTML using PygWalker
             st.header('orange[pyWalker EDA]')
