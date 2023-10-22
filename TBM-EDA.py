@@ -43,8 +43,7 @@ if data_loading_option == "Online Data":
             st.dataframe(df)
             # Show statistics on the data
             st.write(df.describe())
-            pr = ProfileReport(df, explorative=True)
-            
+
             # Generate the HTML using PygWalker
             st.header('orange[pyWalker EDA]')
             st.markdown("This is the pyWalker. Please play with X-axis and Y-axis just doing drag and drop")
@@ -79,22 +78,78 @@ if data_loading_option == "Batch Data":
         df = load_data(uploaded_file)
         st.dataframe(df)
         st.write(df.describe())
-        
-        pr = ProfileReport(df, explorative=True)
+def download_report(report):
+    """Downloads the report as a PDF or HTML file.
+    Args:
+        report: A ydata_profiling.ProfileReport object.
+    """
+
+    file_type = st.selectbox('Select file type:', ['PDF', 'HTML'])
+    if file_type == 'PDF':
+    report.to_pdf('report.pdf')
+    elif file_type == 'HTML':
+    report.to_html('report.html')
+    pr = ProfileReport(df, explorative=True)
+    st.button('Download report', on_click=download_report, args=(report,))
+
+
+def plot_pygwalker(df):
+  """Plots the data using pyWalker.
+
+  Args:
+    df: A Pandas DataFrame containing the data to plot.
+  """
+
+  pyg_html = pyg.to_html(df, hideDataSourceConfig=True, themekey="vega", dark="media")
+
+  # Add a filter to the plot
+  pyg_html += '''
+    <script>
+      pyg.filter({
+        'type': 'dropdown',
+        'label': 'Filter',
+        'values': [
+          {
+            'label': 'All data',
+            'value': 'all'
+          },
+          {
+            'label': 'Data with A > 10',
+            'value': 'A > 10'
+          }
+        ]
+      });
+    </script>
+  '''
+
+  # Embed the HTML into the Streamlit app
+  components.html(pyg_html, height=1000, scrolling=True)
+
+# Plot the data
+plot_pygwalker(df)
+
+
+
+
+
+
+
+    
+        #pr = ProfileReport(df, explorative=True)
         # Generate the HTML using PygWalker
-        st.header('pyWalker Page')
-        st.markdown("This is the pyWalker. Please play with X-axis and Y-axis just doing drag and drop")
-        pyg_html = pyg.to_html(df,hideDataSourceConfig=True,themekey="vega",dark="media")  # Replace 'pyg' with the correct pygWalker object
+        #st.header('pyWalker Page')
+        #st.markdown("This is the pyWalker. Please play with X-axis and Y-axis just doing drag and drop")
+        #pyg_html = pyg.to_html(df,hideDataSourceConfig=True,themekey="vega",dark="media")  # Replace 'pyg' with the correct pygWalker object
         
         # Embed the HTML into the Streamlit app
-        components.html(pyg_html, height=1000, scrolling=True)
+        #components.html(pyg_html, height=1000, scrolling=True)
 
         # Embed the HTML into the Streamlit app
         #components.html(pyg_html, height=1000, scrolling=True)
-        st.header('**Input DataFrame**')
-        st.write(df)
-        st.header('**Pandas Profiling Report**')
-        st_profile_report(pr)
+        #st.header('**Input DataFrame**')
+        #st.write(df)
+        #st.header('**Pandas Profiling Report**')
+        #st_profile_report(pr)
         
 st.link_button("Go to pyWalker", "https://docs.kanaries.net/pygwalker")
 st.link_button("Go to pandas-profiling","https://github.com/ydataai/ydata-profiling")
