@@ -46,6 +46,7 @@ with open('data.pickle', 'rb') as f:
 
 # Create a ydata-profiling report
 report = ProfileReport(df)
+st_profile_report(report)
 
 
 # Display the report in Streamlit
