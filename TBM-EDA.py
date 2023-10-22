@@ -1,7 +1,7 @@
 import pickle
 import pandas as pd
 import streamlit as st
-import ydata_profiling
+from ydata_profiling import ProfileReport
 
 def load_data(mode='online'):
   """Loads data from a CSV or Excel file.
@@ -44,8 +44,8 @@ with open('data.pickle', 'rb') as f:
   df = pickle.load(f)
 
 # Create a ydata-profiling report
-report = df.profile_report()
-report
+report = ProfileReport(df)
+
 
 # Display the report in Streamlit
 st.title('TBM EDA Report')
