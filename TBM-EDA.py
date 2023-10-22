@@ -33,17 +33,17 @@ if data_loading_option == "Online Data":
             # Load the online dataset
             online_data_link = "https://github.com/kilickursat/WebApp/raw/main/TBM_Performance.xlsx"
             df = pd.read_excel(online_data_link, engine='openpyxl')
-            # Show the data as a table
             
+            # Show the data as a table 
             st.dataframe(df)
             # Show statistics on the data
             st.write(df.describe())
-
             pr = ProfileReport(df, explorative=True)
+            
             # Generate the HTML using PygWalker
             st.header('pyWalker Page')
             st.markdown("This is the pyWalker page. You can add your content here.")
-            pyg_html = pygwalker.to_html(df)  # Replace 'pyg' with the correct pygWalker object
+            pyg_html = pyg.to_html(df)  # Replace 'pyg' with the correct pygWalker object
 
             # Embed the HTML into the Streamlit app
             components.html(pyg_html, height=1000, scrolling=True)
