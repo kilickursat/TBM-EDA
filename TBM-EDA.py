@@ -6,6 +6,7 @@ from PIL import Image
 import pygwalker as pyg
 import streamlit.components.v1 as components
 
+session_state = get(username="", page="Main Page")
 
 # Web App Title
 st.markdown('''
