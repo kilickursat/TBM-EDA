@@ -2,6 +2,7 @@ import pickle
 import pandas as pd
 import streamlit as st
 from ydata_profiling import ProfileReport
+from streamlit_pandas_profiling import st_profile_report
 
 def load_data(mode='online'):
   """Loads data from a CSV or Excel file.
