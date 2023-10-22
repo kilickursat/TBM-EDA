@@ -14,14 +14,15 @@ This is the **TBM EDA App** created in Streamlit using the **pandas-profiling** 
 
 ---
 ''')
+# Option to choose online or batch data loading
+data_loading_option = st.radio("Select data loading option:", ("Online Data", "Batch Data"))
 
 image = Image.open('Kursat_Artificial_intelligence_and_a_tbm.png')
 
 st.image(image, caption='Intelligent-TBM')
 # Add two JPG images, one aligned left and the other aligned right
 
-# Option to choose online or batch data loading
-data_loading_option = st.radio("Select data loading option:", ("Online Data", "Batch Data"))
+
 
 # Online Data Loading
 if data_loading_option == "Online Data":
