@@ -24,7 +24,7 @@ st.markdown('''
 
     This is the **TBM EDA App** created in Streamlit using the **pandas-profiling** and **pyGWalker** libraries.
 
-    **Credit:** App built in `Python` + `Streamlit Cloud` + `ChatGPT` + `pyWalker` by [Kursat Kilic](https://github.com/kilickursat) (Researcher for TUST&AI field)
+    **Credit:** App built in `Python` + `Streamlit Cloud` + `ChatGPT` + `pyGWalker` by [Kursat Kilic](https://github.com/kilickursat) (Researcher for TUST&AI field)
 
     ---
 ''')
