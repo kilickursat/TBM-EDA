@@ -22,7 +22,7 @@ st.image(image, caption='Intelligent-TBM-by-Midjourney', width=500)
 st.markdown('''
     # **The TBM EDA App**
 
-    This is the **TBM EDA App** created in Streamlit using the **pandas-profiling** and **pyWalker** libraries.
+    This is the **TBM EDA App** created in Streamlit using the **pandas-profiling** and **pyGWalker** libraries.
 
     **Credit:** App built in `Python` + `Streamlit Cloud` + `ChatGPT` + `pyWalker` by [Kursat Kilic](https://github.com/kilickursat) (Researcher for TUST&AI field)
 
