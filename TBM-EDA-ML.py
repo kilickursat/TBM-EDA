@@ -7,7 +7,7 @@ import pygwalker as pyg
 import streamlit.components.v1 as components
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_squared_error, r2_score
+from sklearn.metrics import mean_squared_error, r2_score,mean_absolute_error
 import matplotlib.pyplot as plt
 import numpy as np
 # Set page layout to 'wide'
@@ -102,18 +102,17 @@ if data_loading_option == "Batch Data":
         # Evaluate the model
         mse = mean_squared_error(y_test, y_pred)
         r2 = r2_score(y_test, y_pred)
-
+        mae=mean_absolute_error(y_true, y_pred)
+        
         st.write(f'Mean Squared Error: {mse}')
         st.write(f'R-squared: {r2}')
-        
+        st.write(f'Mean absolute error: {mae}')
+       
         # Plot Predicted vs. Actual
         st.header('Predicted vs. Actual Values')
         
         # Create a figure with 600 DPI
-        fig, ax = plt.subplots(dpi=600) 
-        
-        # Create a figure with 600 DPI
-        fig, ax = plt.subplots(dpi=600)
+        fig, ax = plt.subplots(dpi=600)  
         
         ax.scatter(y_test, y_pred)
         ax.set_xlabel('Actual Values')
