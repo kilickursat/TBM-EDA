@@ -5,6 +5,7 @@ from streamlit_pandas_profiling import st_profile_report
 from PIL import Image
 import pygwalker as pyg
 import streamlit.components.v1 as components
+col1, col2 = st.columns([3, 1])
 
 st.set_page_config(layout='wide')
 
@@ -45,21 +46,22 @@ if data_loading_option == "Online Data":
             st.dataframe(df)
             # Show statistics on the data
             st.write(df.describe())
-            pr = ProfileReport(df, explorative=True)
+            with col1:
+                pr = ProfileReport(df, explorative=True)
 
-            # Generate the HTML using PygWalker
-            st.header('orange[pyWalker EDA]')
-            st.markdown("This is the pyWalker. Please play with X-axis and Y-axis just doing drag and drop")
-            pyg_html = pyg.to_html(df,hideDataSourceConfig=True,themekey="vega",dark="media")  # Replace 'pyg' with the correct pygWalker object
+                # Generate the HTML using PygWalker
+                st.header('orange[pyWalker EDA]')
+                st.markdown("This is the pyWalker. Please play with X-axis and Y-axis just doing drag and drop")
+                pyg_html = pyg.to_html(df,hideDataSourceConfig=True,themekey="vega",dark="media")  # Replace 'pyg' with the correct pygWalker object
 
-            # Embed the HTML into the Streamlit app
-            components.html(pyg_html, height=1000, scrolling=True)
+                # Embed the HTML into the Streamlit app
+                components.html(pyg_html, height=1000, scrolling=True)
 
-            st.header('**Input DataFrame**')
-            st.write(df)
-            st.write('---')
-            st.header('**Pandas Profiling Report**')
-            st_profile_report(pr)
+                st.header('**Input DataFrame**')
+                st.write(df)
+                st.write('---')
+                st.header('**Pandas Profiling Report**')
+                st_profile_report(pr)
 
 # Batch Data Loading
 if data_loading_option == "Batch Data":
@@ -81,15 +83,16 @@ if data_loading_option == "Batch Data":
         df = load_data(uploaded_file)
         st.dataframe(df)
         st.write(df.describe())
-    
-        pr = ProfileReport(df, explorative=True)
-        # Generate the HTML using PygWalker
-        st.header('pyWalker Page')
-        st.markdown("This is the pyWalker. Please play with X-axis and Y-axis just doing drag and drop")
-        pyg_html = pyg.to_html(df,hideDataSourceConfig=True,themekey="vega",dark="media")  # Replace 'pyg' with the correct pygWalker object
         
-        # Embed the HTML into the Streamlit app
-        components.html(pyg_html, height=1000, scrolling=True)
+        with col2:
+            pr = ProfileReport(df, explorative=True)
+            # Generate the HTML using PygWalker
+            st.header('pyWalker Page')
+            st.markdown("This is the pyWalker. Please play with X-axis and Y-axis just doing drag and drop")
+            pyg_html = pyg.to_html(df,hideDataSourceConfig=True,themekey="vega",dark="media")  # Replace 'pyg' with the correct pygWalker object
+        
+            # Embed the HTML into the Streamlit app
+            components.html(pyg_html, height=1000, scrolling=True)
 
         # Embed the HTML into the Streamlit app
         #components.html(pyg_html, height=1000, scrolling=True)
