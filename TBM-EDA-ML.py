@@ -132,7 +132,7 @@ if data_loading_option == "Batch Data":
         ax.legend()
 
         # Calculate residuals as NumPy arrays
-        residuals = np.array(y_test - y_pred)
+        residuals = np.array(y_test) - np.array(y_pred)
 
         
         # Data distribution
