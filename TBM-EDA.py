@@ -6,6 +6,8 @@ from PIL import Image
 import pygwalker as pyg
 import streamlit.components.v1 as components
 
+st.set_page_config(layout='wide')
+
 image = Image.open('Kursat_Artificial_intelligence_and_TBM.png')
 
 st.success('Welcome!')
