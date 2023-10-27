@@ -13,7 +13,7 @@ with col1:
     #st.set_page_config(layout='wide')
     
     # Page image and markdowns
-    image = Image open('Kursat_Artificial_intelligence_and_TBM.png')
+    image = Image.open('Kursat_Artificial_intelligence_and_TBM.png')
     st.success('Welcome!')
     st.image(image, caption='Intelligent-TBM-by-Midjourney', width=500)
     
