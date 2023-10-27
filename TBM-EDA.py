@@ -6,7 +6,7 @@ from PIL import Image
 import pygwalker as pyg
 import streamlit.components.v1 as components
 
-col1, col2, col3 = st.columns(3)
+col1, col2 = st.columns(2)  # Set up two columns for the initial content
 
 # Set up the layout in the first column (col1)
 with col1:
@@ -26,10 +26,10 @@ with col1:
         ---
     ''')
 
-    data_loading_option = st.radio("Select data loading option:", ("Online Data", "Batch Data"))
-
 # Define components for online data loading in the second column (col2)
 with col2:
+    data_loading_option = st.radio("Select data loading option:", ("Online Data", "Batch Data"))
+
     if data_loading_option == "Online Data":
         with st.sidebar:
             st.header('Press to use Online Data Loading')
@@ -54,9 +54,11 @@ with col2:
             st.header('**Pandas Profiling Report**')
             st_profile_report(pr)
 
-# Define components for batch data loading in the third column (col3)
-with col3:
-    if data_loading_option == "Batch Data":
+# Separate column for batch data loading
+col3 = st.columns(1)[0]
+
+if data_loading_option == "Batch Data":
+    with col3:
         with st.sidebar:
             st.header('Batch Data Loading')
             st.markdown("You can choose to upload your own CSV or Excel file.")
@@ -81,7 +83,6 @@ with col3:
             st.markdown("This is the pyWalker. Please play with X-axis and Y-axis just by doing drag and drop")
             pyg_html = pyg.to_html(df, hideDataSourceConfig=True, themekey="vega", dark="media")
             components.html(pyg_html, height=1000, scrolling=True)
-
             st.header('**Input DataFrame**')
             st.write(df)
 
