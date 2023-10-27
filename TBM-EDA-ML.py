@@ -112,52 +112,19 @@ if data_loading_option == "Batch Data":
         # Create a figure with 600 DPI
         fig, ax = plt.subplots(dpi=600)
         
-        # Scatter plot
-        scatter = ax.scatter(y_test, y_pred, c='crimson', label='Data')
+        # Plot Predicted vs. Actual
+        st.header('Predicted vs. Actual Values')
         
-        # Best fit line
-        fit_line = np.poly1d(np.polyfit(y_test, y_pred, 1))
-        ax.plot(y_test, fit_line(y_test), color='red', label='Best Fit Line')
+        # Create a figure with 600 DPI
+        fig, ax = plt.subplots(dpi=600)
         
-        # Add a 1:1 line
-        p1 = max(max(y_pred), max(y_test))
-        p2 = min(min(y_pred), min(y_test))
-        ax.plot([p1, p2], [p1, p2], 'b-')
-        
+        ax.scatter(y_test, y_pred)
         ax.set_xlabel('Actual Values')
         ax.set_ylabel('Predicted Values')
         ax.set_title('Predicted vs. Actual Values')
-        
-        # Add a legend
-        ax.legend()
-
-        # Calculate residuals as NumPy arrays
-        residuals = np.array(y_test) - np.array(y_pred)
-
-        
-        # Data distribution
-        # Data distribution
-        ax2 = fig.add_axes([0.2, 0.6, 0.25, 0.25])
-        ax2.hist(residuals, bins=15, orientation="horizontal", color='skyblue')
-        ax2.set_xlabel('Frequency')
-        ax2.set_ylabel('Residuals')
-        ax2.set_title('Residuals Distribution')
-        
-        # Additional plot
-        plt.figure(figsize=(5, 5))
-        plt.scatter(y_test, y_pred, c='crimson')
-        
-        plt.plot([p1, p2], [p1, p2], 'b-')
-        plt.title("Specific Energy (kWh/m^3)")
-        plt.xlabel("Actual specific energy (kWh/m^3)", fontsize=15)
-        plt.ylabel("Predicted specific energy (kWh/m^3)", fontsize=15)
-        plt.axis('equal')
-        st.pyplot()
-        
         st.pyplot(fig)
-
-
 
 st.link_button("Go to pyWalker", "https://docs.kanaries.net/pygwalker")
 st.link_button("Go to pandas-profiling", "https://github.com/ydataai/ydata-profiling")
+st.link_button("Go to sklearn - RF regressor","https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html")
 
