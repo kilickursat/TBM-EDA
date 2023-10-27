@@ -11,7 +11,8 @@ from sklearn.metrics import mean_squared_error, r2_score
 import numpy as np
 # Set page layout to 'wide'
 st.set_page_config(layout='wide')
-
+# Initialize the model variable
+model = None
 # Page image and markdowns
 image = Image.open('Kursat_Artificial_intelligence_and_TBM.png')
 st.success('Welcome!')
