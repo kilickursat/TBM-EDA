@@ -84,46 +84,6 @@ if data_loading_option == "Batch Data":
         pr = ProfileReport(df, explorative=True)
         st_profile_report(pr)
 
-        # Adding RandomForest regression for batch data
-        st.header('RandomForest Regression for Batch Data')
-
-        # Split the data into features (X) and the user-specified target variable (y)
-        X = df.drop(target_column, axis=1)
-        y = df[target_column]
-
-        # Split the data into training and testing sets
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-        # Train a RandomForest regression model
-        model = RandomForestRegressor(n_estimators=100, random_state=42)
-        model.fit(X_train, y_train)
-
-        # Make predictions
-        y_pred = model.predict(X_test)
-
-        # Evaluate the model
-        mse = mean_squared_error(y_test, y_pred)
-        r2 = r2_score(y_test, y_pred)
-
-        st.write(f'Mean Squared Error: {mse}')
-        st.write(f'R-squared: {r2}')
-        mae=mean_absolute_error(y_true, y_pred)
-        
-        st.write(f'Mean Squared Error: {mse}')
-        st.write(f'R-squared: {r2}')
-        st.write(f'Mean absolute error: {mae}')
-       
-        # Plot Predicted vs. Actual
-        st.header('Predicted vs. Actual Values')
-        
-        # Create a figure with 600 DPI
-        fig, ax = plt.subplots(dpi=600)  
-        
-        ax.scatter(y_test, y_pred)
-        ax.set_xlabel('Actual Values')
-        ax.set_ylabel('Predicted Values')
-        ax.set_title('Predicted vs. Actual Values')
-        st.pyplot(fig)
 
 st.link_button("Go to pyWalker", "https://docs.kanaries.net/pygwalker")
 st.link_button("Go to pandas-profiling", "https://github.com/ydataai/ydata-profiling")
