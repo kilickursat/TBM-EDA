@@ -113,11 +113,16 @@ if data_loading_option == "Batch Data":
         fig, ax = plt.subplots(dpi=600)
         
         # Scatter plot
-        scatter = ax.scatter(y_test, y_pred, label='Data')
+        scatter = ax.scatter(y_test, y_pred, c='crimson', label='Data')
         
         # Best fit line
         fit_line = np.poly1d(np.polyfit(y_test, y_pred, 1))
         ax.plot(y_test, fit_line(y_test), color='red', label='Best Fit Line')
+        
+        # Add a 1:1 line
+        p1 = max(max(y_pred), max(y_test))
+        p2 = min(min(y_pred), min(y_test))
+        ax.plot([p1, p2], [p1, p2], 'b-')
         
         ax.set_xlabel('Actual Values')
         ax.set_ylabel('Predicted Values')
@@ -132,6 +137,17 @@ if data_loading_option == "Batch Data":
         ax2.set_xlabel('Frequency')
         ax2.set_ylabel('Residuals')
         ax2.set_title('Residuals Distribution')
+        
+        # Additional plot
+        plt.figure(figsize=(5, 5))
+        plt.scatter(y_test, y_pred, c='crimson')
+        
+        plt.plot([p1, p2], [p1, p2], 'b-')
+        plt.title("Specific Energy (kWh/m^3)")
+        plt.xlabel("Actual specific energy (kWh/m^3)", fontsize=15)
+        plt.ylabel("Predicted specific energy (kWh/m^3)", fontsize=15)
+        plt.axis('equal')
+        st.pyplot()
         
         st.pyplot(fig)
 
