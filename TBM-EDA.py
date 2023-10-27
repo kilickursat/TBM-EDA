@@ -7,7 +7,7 @@ import pygwalker as pyg
 import streamlit.components.v1 as components
 col1, col2 = st.columns([3, 1])
 
-st.set_page_config(layout='wide')
+#st.set_page_config(layout='wide')
 
 image = Image.open('Kursat_Artificial_intelligence_and_TBM.png')
 
