@@ -45,7 +45,7 @@ if data_loading_option == "Online Data":
         st.write(df.describe())
 
         pr = ProfileReport(df, explorative=True)
-        st.header('orange[pyWalker EDA]')
+        st.header('[pyWalker EDA]')
         st.markdown("This is the pyWalker. Please play with X-axis and Y-axis just by doing drag and drop")
         pyg_html = pyg.to_html(df, hideDataSourceConfig=True, themekey="vega", dark="media")
         components.html(pyg_html, height=1000, scrolling=True)
@@ -64,7 +64,7 @@ if data_loading_option == "Batch Data":
     st.markdown("[Example excel input file](https://github.com/kilickursat/WebApp/raw/main/TBM_Performance.xlsx)")
 
     # Add an input field to let the user specify the target column
-    target_column = st.text_input("📈**Enter the name of the target column:**🙌", "Please enter your target column name")
+    target_column = st.text_input("**Enter the name of the target column:**", "Please enter your target column name")
 
     if uploaded_file is not None:
         @st.cache
