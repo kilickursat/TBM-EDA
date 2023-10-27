@@ -8,19 +8,10 @@ import streamlit.components.v1 as components
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, r2_score
-import numpy as np
 import matplotlib.pyplot as plt
-from sklearn.model_selection import learning_curve  
 
 # Set page layout to 'wide'
 st.set_page_config(layout='wide')
-
-# Initialize the model variable
-model =  RandomForestRegressor(n_estimators=100, random_state=42)
-
-# Initialize X and y
-X = df.drop(target_column, axis=1)
-y = df[target_column]
 
 # Page image and markdowns
 image = Image.open('Kursat_Artificial_intelligence_and_TBM.png')
@@ -54,7 +45,7 @@ if data_loading_option == "Online Data":
         st.write(df.describe())
 
         pr = ProfileReport(df, explorative=True)
-        st.header('[pyWalker EDA]')
+        st.header('orange[pyWalker EDA]')
         st.markdown("This is the pyWalker. Please play with X-axis and Y-axis just by doing drag and drop")
         pyg_html = pyg.to_html(df, hideDataSourceConfig=True, themekey="vega", dark="media")
         components.html(pyg_html, height=1000, scrolling=True)
@@ -73,7 +64,7 @@ if data_loading_option == "Batch Data":
     st.markdown("[Example excel input file](https://github.com/kilickursat/WebApp/raw/main/TBM_Performance.xlsx)")
 
     # Add an input field to let the user specify the target column
-    target_column = st.text_input("🚀**Enter the name of the target column:**", "Please enter the name of your target column")
+    target_column = st.text_input("Enter the name of the target column:", "default_target_column")
 
     if uploaded_file is not None:
         @st.cache
@@ -114,60 +105,17 @@ if data_loading_option == "Batch Data":
 
         st.write(f'Mean Squared Error: {mse}')
         st.write(f'R-squared: {r2}')
+        
         # Plot Predicted vs. Actual
         st.header('Predicted vs. Actual Values')
-
+        # Create a figure with 600 DPI
+        plt.figure(dpi=600)
         plt.scatter(y_test, y_pred)
         plt.xlabel('Actual Values')
         plt.ylabel('Predicted Values')
         plt.title('Predicted vs. Actual Values')
         st.pyplot()
 
-        # Plot Learning Curve
-        st.header('Learning Curve')
-
-# Define a function to plot the learning curve
-def plot_learning_curve(estimator, title, X, y, axes=None, ylim=None, cv=None,
-                        n_jobs=None, train_sizes=np.linspace(.1, 1.0, 5)):
-    if axes is None:
-        _, axes = plt.subplots(1, 1, figsize=(5, 5))
-
-    axes.set_title(title)
-    if ylim is not None:
-        axes.set_ylim(*ylim)
-    axes.set_xlabel("Training examples")
-    axes.set_ylabel("Score")
-
-    train_sizes, train_scores, test_scores, fit_times, _ = \
-        learning_curve(estimator, X, y, cv=cv, n_jobs=n_jobs,
-                       train_sizes=train_sizes,
-                       return_times=True)
-    train_scores_mean = np.mean(train_scores, axis=1)
-    train_scores_std = np.std(train_scores, axis=1)
-    test_scores_mean = np.mean(test_scores, axis=1)
-    test_scores_std = np.std(test_scores, axis=1)
-    fit_times_mean = np.mean(fit_times, axis=1)
-    fit_times_std = np.std(fit_times, axis=1)
-
-    # Plot learning curve
-    axes.grid()
-    axes.fill_between(train_sizes, train_scores_mean - train_scores_std,
-                     train_scores_mean + train_scores_std, alpha=0.1,
-                     color="r")
-    axes.fill_between(train_sizes, test_scores_mean - test_scores_std,
-                     test_scores_mean + test_scores_std, alpha=0.1,
-                     color="g")
-    axes.plot(train_sizes, train_scores_mean, 'o-', color="r",
-             label="Training score")
-    axes.plot(train_sizes, test_scores_mean, 'o-', color="g",
-             label="Cross-validation score")
-    axes.legend(loc="best")
-    plt.show()
-
-# Plot the learning curve
-plot_learning_curve(model, "Learning Curve", X, y)
-st.pyplot()
-    
 st.link_button("Go to pyWalker", "https://docs.kanaries.net/pygwalker")
 st.link_button("Go to pandas-profiling", "https://github.com/ydataai/ydata-profiling")
 
