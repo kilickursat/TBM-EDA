@@ -64,7 +64,7 @@ if data_loading_option == "Batch Data":
     st.markdown("[Example excel input file](https://github.com/kilickursat/WebApp/raw/main/TBM_Performance.xlsx)")
 
     # Add an input field to let the user specify the target column
-    target_column = st.text_input("**Enter the name of the target column:**", "**Please enter your target column name**")
+    target_column = st.text_input("📈**Enter the name of the target column:**🙌", "Please enter your target column name")
 
     if uploaded_file is not None:
         @st.cache
