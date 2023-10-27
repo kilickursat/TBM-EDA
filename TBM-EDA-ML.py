@@ -108,13 +108,16 @@ if data_loading_option == "Batch Data":
         
         # Plot Predicted vs. Actual
         st.header('Predicted vs. Actual Values')
+        
         # Create a figure with 600 DPI
-        plt.figure(dpi=600)
-        plt.scatter(y_test, y_pred)
-        plt.xlabel('Actual Values')
-        plt.ylabel('Predicted Values')
-        plt.title('Predicted vs. Actual Values')
-        st.pyplot()
+        fig, ax = plt.subplots(dpi=600)
+        
+        ax.scatter(y_test, y_pred)
+        ax.set_xlabel('Actual Values')
+        ax.set_ylabel('Predicted Values')
+        ax.set_title('Predicted vs. Actual Values')
+        st.pyplot(fig)
+
 
 st.link_button("Go to pyWalker", "https://docs.kanaries.net/pygwalker")
 st.link_button("Go to pandas-profiling", "https://github.com/ydataai/ydata-profiling")
