@@ -127,3 +127,4 @@ if data_loading_option == "Batch Data":
 
 st.link_button("Go to pyWalker", "https://docs.kanaries.net/pygwalker")
 st.link_button("Go to pandas-profiling", "https://github.com/ydataai/ydata-profiling")
+st.link_button("Go to random forest regressor","https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html")
