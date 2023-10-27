@@ -46,7 +46,7 @@ if data_loading_option == "Online Data":
         st.write(df.describe())
 
         pr = ProfileReport(df, explorative=True)
-        st.header('orange[pyWalker EDA]')
+        st.header('pyGWalker - tableau')
         st.markdown("This is the pyWalker. Please play with X-axis and Y-axis just by doing drag and drop")
         pyg_html = pyg.to_html(df, hideDataSourceConfig=True, themekey="vega", dark="media")
         components.html(pyg_html, height=1000, scrolling=True)
@@ -83,6 +83,11 @@ if data_loading_option == "Batch Data":
         st.header('Pandas Profiling Report for Batch Data')
         pr = ProfileReport(df, explorative=True)
         st_profile_report(pr)
+
+        st.header('pyGWalker - tableau')
+        st.markdown("This is the pyWalker. Please play with X-axis and Y-axis just by doing drag and drop")
+        pyg_html = pyg.to_html(df, hideDataSourceConfig=True, themekey="vega", dark="media")
+        components.html(pyg_html, height=1000, scrolling=True)
 
         # Adding RandomForest regression for batch data
         st.header('RandomForest Regression for Batch Data')
