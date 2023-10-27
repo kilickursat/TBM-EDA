@@ -9,6 +9,7 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, r2_score
 import numpy as np
+import matplotlib.pyplot as plt
 # Set page layout to 'wide'
 st.set_page_config(layout='wide')
 
