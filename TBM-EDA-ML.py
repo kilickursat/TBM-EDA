@@ -130,10 +130,15 @@ if data_loading_option == "Batch Data":
         
         # Add a legend
         ax.legend()
+
+        # Calculate residuals as NumPy arrays
+        residuals = np.array(y_test - y_pred)
+
         
         # Data distribution
+        # Data distribution
         ax2 = fig.add_axes([0.2, 0.6, 0.25, 0.25])
-        ax2.hist(y_test - y_pred, bins=15, orientation="horizontal", color='skyblue')
+        ax2.hist(residuals, bins=15, orientation="horizontal", color='skyblue')
         ax2.set_xlabel('Frequency')
         ax2.set_ylabel('Residuals')
         ax2.set_title('Residuals Distribution')
