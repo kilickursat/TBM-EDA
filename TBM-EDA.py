@@ -10,7 +10,7 @@ col1, col2, col3 = st.columns(3)
 
 # Set up the layout in the first column (col1)
 with col1:
-    st.set_page_config(layout='wide')
+    #st.set_page_config(layout='wide')
     
     image = Image.open('Kursat_Artificial_intelligence_and_TBM.png')
     st.success('Welcome!')
