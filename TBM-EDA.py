@@ -107,7 +107,7 @@ if data_loading_option == "Batch Data":
 
         st.write(f'Mean Squared Error: {mse}')
         st.write(f'R-squared: {r2}')
-        mae=mean_absolute_error(y_true, y_pred)
+        mae=mean_absolute_error(y_test, y_pred)
         
         st.write(f'Mean Squared Error: {mse}')
         st.write(f'R-squared: {r2}')
