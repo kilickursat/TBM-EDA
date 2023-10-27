@@ -66,7 +66,7 @@ if data_loading_option == "Batch Data":
 
     # Add an input field to let the user specify the target column
     st.header("**Random forest regressor**")
-    target_column = st.text_input("**Enter the name of the target column:**", "Please enter your target name on your dataset")
+    target_column = st.text_input("**Enter the name of the target column:**", "Please type the name of the target column in your dataset.")
 
     if uploaded_file is not None:
         @st.cache
