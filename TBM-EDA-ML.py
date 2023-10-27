@@ -10,6 +10,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, r2_score,mean_absolute_error
 import matplotlib.pyplot as plt
 import numpy as np
+
 # Set page layout to 'wide'
 st.set_page_config(layout='wide')
 
@@ -45,7 +46,7 @@ if data_loading_option == "Online Data":
         st.write(df.describe())
 
         pr = ProfileReport(df, explorative=True)
-        st.header('[pyWalker EDA]')
+        st.header('orange[pyWalker EDA]')
         st.markdown("This is the pyWalker. Please play with X-axis and Y-axis just by doing drag and drop")
         pyg_html = pyg.to_html(df, hideDataSourceConfig=True, themekey="vega", dark="media")
         components.html(pyg_html, height=1000, scrolling=True)
@@ -59,12 +60,12 @@ if data_loading_option == "Batch Data":
     with st.sidebar:
         st.header('Batch Data Loading')
         st.markdown("You can choose to upload your own CSV or Excel file.")
-    
+
     uploaded_file = st.file_uploader("Upload your input file (CSV or Excel)", type=["csv", "xlsx"])
     st.markdown("[Example excel input file](https://github.com/kilickursat/WebApp/raw/main/TBM_Performance.xlsx)")
 
     # Add an input field to let the user specify the target column
-    target_column = st.text_input("**Enter the name of the target column:**", "Please enter your target column name")
+    target_column = st.text_input("Enter the name of the target column:", "Please enter your custom ")
 
     if uploaded_file is not None:
         @st.cache
@@ -77,7 +78,7 @@ if data_loading_option == "Batch Data":
         df = load_data(uploaded_file)
         st.dataframe(df)
         st.write(df.describe())
-        
+
         st.header('Pandas Profiling Report for Batch Data')
         pr = ProfileReport(df, explorative=True)
         st_profile_report(pr)
@@ -102,6 +103,9 @@ if data_loading_option == "Batch Data":
         # Evaluate the model
         mse = mean_squared_error(y_test, y_pred)
         r2 = r2_score(y_test, y_pred)
+
+        st.write(f'Mean Squared Error: {mse}')
+        st.write(f'R-squared: {r2}')
         mae=mean_absolute_error(y_true, y_pred)
         
         st.write(f'Mean Squared Error: {mse}')
@@ -122,5 +126,3 @@ if data_loading_option == "Batch Data":
 
 st.link_button("Go to pyWalker", "https://docs.kanaries.net/pygwalker")
 st.link_button("Go to pandas-profiling", "https://github.com/ydataai/ydata-profiling")
-st.link_button("Go to sklearn - RF regressor","https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html")
-
