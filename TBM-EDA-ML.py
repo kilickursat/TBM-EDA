@@ -19,8 +19,8 @@ st.set_page_config(layout='wide')
 model =  RandomForestRegressor(n_estimators=100, random_state=42)
 
 # Initialize X and y
-X = None
-y = None
+X = df.drop(target_column, axis=1)
+y = df[target_column]
 
 # Page image and markdowns
 image = Image.open('Kursat_Artificial_intelligence_and_TBM.png')
