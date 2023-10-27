@@ -112,11 +112,29 @@ if data_loading_option == "Batch Data":
         # Create a figure with 600 DPI
         fig, ax = plt.subplots(dpi=600)
         
-        ax.scatter(y_test, y_pred)
+        # Scatter plot
+        scatter = ax.scatter(y_test, y_pred, label='Data')
+        
+        # Best fit line
+        fit_line = np.poly1d(np.polyfit(y_test, y_pred, 1))
+        ax.plot(y_test, fit_line(y_test), color='red', label='Best Fit Line')
+        
         ax.set_xlabel('Actual Values')
         ax.set_ylabel('Predicted Values')
         ax.set_title('Predicted vs. Actual Values')
+        
+        # Add a legend
+        ax.legend()
+        
+        # Data distribution
+        ax2 = fig.add_axes([0.2, 0.6, 0.25, 0.25])
+        ax2.hist(y_test - y_pred, bins=15, orientation="horizontal", color='skyblue')
+        ax2.set_xlabel('Frequency')
+        ax2.set_ylabel('Residuals')
+        ax2.set_title('Residuals Distribution')
+        
         st.pyplot(fig)
+
 
 
 st.link_button("Go to pyWalker", "https://docs.kanaries.net/pygwalker")
