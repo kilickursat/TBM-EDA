@@ -16,7 +16,7 @@ from sklearn.model_selection import learning_curve
 st.set_page_config(layout='wide')
 
 # Initialize the model variable
-model = None
+model =  RandomForestRegressor(n_estimators=100, random_state=42)
 
 # Initialize X and y
 X = None
