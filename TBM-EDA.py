@@ -104,14 +104,11 @@ if data_loading_option == "Batch Data":
         # Evaluate the model
         mse = mean_squared_error(y_test, y_pred)
         r2 = r2_score(y_test, y_pred)
-
-        st.write(f'Mean Squared Error: {mse}')
-        st.write(f'R-squared: {r2}')
         mae=mean_absolute_error(y_test, y_pred)
-        
-        st.write(f'Mean Squared Error: {mse}')
-        st.write(f'R-squared: {r2}')
-        st.write(f'Mean absolute error: {mae}')
+
+        st.write(f'Mean Squared Error: {round(mse, 2)}')
+        st.write(f'R-squared: {round(r2, 2)}')
+        st.write(f'Mean Absolute Error: {round(mae, 2)}')
        
         # Plot Predicted vs. Actual
         st.header('Predicted vs. Actual Values')
