@@ -9,10 +9,6 @@ import streamlit.components.v1 as components
 # Set page layout to 'wide'
 st.set_page_config(layout='wide')
 
-
-# Option to choose online or batch data loading
-data_loading_option = st.radio("Select data loading option:", ("Online Data", "Batch Data"))
-
 # Page image and markdowns
 image = Image.open('Kursat_Artificial_intelligence_and_TBM.png')
 st.success('Welcome!')
@@ -27,6 +23,9 @@ st.markdown('''
 
     ---
 ''')
+
+# Option to choose online or batch data loading
+data_loading_option = st.radio("Select data loading option:", ("Online Data", "Batch Data"))
 
 if data_loading_option == "Online Data":
     with st.sidebar:
