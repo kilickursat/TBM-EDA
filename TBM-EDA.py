@@ -69,7 +69,7 @@ if data_loading_option == "Batch Data":
     target_column = st.text_input("**Enter the name of the target column:**", "Please type the name of the target column in your dataset.")
 
     if uploaded_file is not None:
-        @st.cache
+        @st.cache_data
         def load_data(file):
             if file.name.endswith('.csv'):
                 return pd.read_csv(file)
