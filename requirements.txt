@@ -8,4 +8,4 @@ pickle5 ==  0.0.11
 joblib==1.2.0
 ydata-profiling
 streamlit-pandas-profiling
-pygwalker==0.3.10
+pygwalker==0.3.11
