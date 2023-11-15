@@ -33,7 +33,7 @@ st.markdown('''
 # Option to choose online or batch data loading
 
 # Set your OpenAI API key
-openai.api_key = "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"
+openai.api_key = "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"
 
 data_loading_option = st.radio("Select data loading option:", ("Online Data", "Batch Data"))
 
