@@ -10,6 +10,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, r2_score,mean_absolute_error
 import matplotlib.pyplot as plt
 import numpy as np
+import openai
 
 # Set page layout to 'wide'
 st.set_page_config(layout='wide')
@@ -30,6 +31,10 @@ st.markdown('''
 ''')
 
 # Option to choose online or batch data loading
+
+# Set your OpenAI API key
+openai.api_key = "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"
+
 data_loading_option = st.radio("Select data loading option:", ("Online Data", "Batch Data"))
 
 if data_loading_option == "Online Data":
@@ -82,7 +87,20 @@ if data_loading_option == "Batch Data":
 
         st.header('Pandas Profiling Report for Batch Data')
         pr = ProfileReport(df, explorative=True)
-        st_profile_report(pr)
+
+        # Extract key findings from Pandas Profiling report
+        key_findings = profile.get_description()
+
+        # Send key findings to GPT-3.5 for summary generation
+        completion = openai.Completion.create(engine="gpt-3.5-turbo-1106", prompt=key_findings)
+
+        # Display the generated summary
+        st.write("**AI Summary:**")
+        st.write(completion.choices[0].text)
+
+        st_profile_report(profile)
+
+        #st_profile_report(pr)
 
         st.header('pyGWalker - tableau')
         st.markdown("This is the pyWalker. Please play with X-axis and Y-axis just by doing drag and drop")
