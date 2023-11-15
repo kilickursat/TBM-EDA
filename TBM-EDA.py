@@ -33,7 +33,6 @@ st.markdown('''
 # Option to choose online or batch data loading
 
 # Set your OpenAI API key
-openai.api_key = "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"
 
 data_loading_option = st.radio("Select data loading option:", ("Online Data", "Batch Data"))
 
@@ -87,20 +86,7 @@ if data_loading_option == "Batch Data":
 
         st.header('Pandas Profiling Report for Batch Data')
         pr = ProfileReport(df, explorative=True)
-
-        # Extract key findings from Pandas Profiling report
-        key_findings = profile.get_description()
-
-        # Send key findings to GPT-3.5 for summary generation
-        completion = openai.Completion.create(engine="gpt-3.5-turbo-1106", prompt=key_findings)
-
-        # Display the generated summary
-        st.write("**AI Summary:**")
-        st.write(completion.choices[0].text)
-
-        st_profile_report(profile)
-
-        #st_profile_report(pr)
+        st_profile_report(pr)
 
         st.header('pyGWalker - tableau')
         st.markdown("This is the pyWalker. Please play with X-axis and Y-axis just by doing drag and drop")
