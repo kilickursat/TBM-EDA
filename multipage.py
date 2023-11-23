@@ -147,7 +147,7 @@ def batch_data():
         ax.set_xlabel('Actual Values')
         ax.set_ylabel('Predicted Values')
         ax.set_title('Predicted vs. Actual Values')
-        st.pyplot(fig)
+       
 
 
         ax.legend()
