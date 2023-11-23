@@ -148,6 +148,13 @@ def batch_data():
         ax.set_title('Predicted vs. Actual Values')
         st.pyplot(fig)
 
+        # Fit a linear regression line to the scatter plot
+        m, b = np.polyfit(y_test, y_pred, 1)
+        plt.plot(y_test, m * y_test + b, color='red', label='Best Fit Line')
+
+        ax.legend()
+        st.pyplot(fig)
+
     st.link_button("Go to pyGWalker", "https://docs.kanaries.net/pygwalker")
     st.link_button("Go to pandas-profiling", "https://github.com/ydataai/ydata-profiling")
     st.link_button("Go to random forest regressor","https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html")
