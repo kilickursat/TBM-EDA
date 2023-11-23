@@ -16,7 +16,7 @@ st.set_page_config(layout='wide')
 
 # Page image and markdowns
 image = Image.open('Firefly Illustration.jpg')
-st.success('Welcome!')
+st.success('Welcome! Exploratory Data Analysis')
 st.image(image, caption='Intelligent-TBM-by-Adobe Firefly', width=500)
 
 st.markdown('''
