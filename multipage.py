@@ -150,14 +150,6 @@ def batch_data():
         st.pyplot(fig)
 
 
-        # Convert y_test and y_pred to numpy arrays for indexing
-        y_test_np = np.array(y_test)
-        y_pred_np = np.array(y_pred)
-        
-        # Fit a linear regression line to the scatter plot
-        m, b = np.polyfit(y_test, y_pred, 1)
-        plt.plot(y_test, m * y_test + b, color='red', label='Best Fit Line')
-
         ax.legend()
         st.pyplot(fig)
 
