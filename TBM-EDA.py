@@ -7,7 +7,7 @@ import pygwalker as pyg
 import streamlit.components.v1 as components
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_squared_error, r2_score,mean_absolute_error
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -29,13 +29,28 @@ st.markdown('''
     ---
 ''')
 
-# Option to choose online or batch data loading
+# Sidebar navigation
+def sidebar():
+    st.sidebar.title('Navigation')
+    selection = st.sidebar.radio('Go to:', ('Main Page', 'Online Data', 'Batch Data'))
 
-# Set your OpenAI API key
+    if selection == 'Main Page':
+        main_page()
+    elif selection == 'Online Data':
+        online_data()
+    elif selection == 'Batch Data':
+        batch_data()
 
-data_loading_option = st.radio("Select data loading option:", ("Online Data", "Batch Data"))
+# Main page content
+def main_page():
+    st.write("This is the main page of the TBM EDA App.")
 
-if data_loading_option == "Online Data":
+# Online data section content
+# Online data section content
+def online_data():
+    st.header('Online Data Section')
+    st.write('This is the online data section.')
+
     with st.sidebar:
         st.header('Press to use Online Data Loading')
         st.markdown("You can choose to load the online dataset or upload your own CSV or Excel file. The example dataset is from TBM literature")
@@ -59,7 +74,11 @@ if data_loading_option == "Online Data":
         st.header('**Pandas Profiling Report**')
         st_profile_report(pr)
 
-if data_loading_option == "Batch Data":
+# Batch data section content
+def batch_data():
+    st.header('Batch Data Section')
+    st.write('This is the batch data section.')
+
     with st.sidebar:
         st.header('Batch Data Loading')
         st.markdown("You can choose to upload your own CSV or Excel file.")
@@ -128,8 +147,16 @@ if data_loading_option == "Batch Data":
         ax.set_xlabel('Actual Values')
         ax.set_ylabel('Predicted Values')
         ax.set_title('Predicted vs. Actual Values')
+       
+
+
+        ax.legend()
         st.pyplot(fig)
 
-st.link_button("Go to pyGWalker", "https://docs.kanaries.net/pygwalker")
-st.link_button("Go to pandas-profiling", "https://github.com/ydataai/ydata-profiling")
-st.link_button("Go to random forest regressor","https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html")
+    st.link_button("Go to pyGWalker", "https://docs.kanaries.net/pygwalker")
+    st.link_button("Go to pandas-profiling", "https://github.com/ydataai/ydata-profiling")
+    st.link_button("Go to random forest regressor","https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html")
+
+
+if __name__ == '__main__':
+    sidebar()
